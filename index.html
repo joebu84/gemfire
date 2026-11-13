@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#140e09">
+<title>Gemfire</title>
+<link rel="icon" href="favicon.svg">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="gate">
+  <form id="gateForm" class="card">
+    <h1>GEMFIRE</h1>
+    <p class="sub">Sega Genesis · up to four players, taking turns</p>
+    <label for="password">Password</label>
+    <input id="password" type="password" autocomplete="current-password" autocapitalize="off" spellcheck="false">
+    <label class="check"><input id="remember" type="checkbox"> Remember on this tab</label>
+    <button id="unlockBtn" type="submit">Unlock</button>
+    <p id="gateMsg" role="alert"></p>
+    <p class="fine">The ROM stays encrypted on the site. This page decrypts it in your browser and does not upload it.</p>
+  </form>
+</div>
+
+<div id="app" class="hidden">
+  <div id="lobby">
+    <div class="card wide">
+      <h1>GEMFIRE</h1>
+      <p class="sub">One tab runs the game. Friends join with a code and play as players 2, 3 and 4.</p>
+      <div class="howto">
+        <h2>How to play together</h2>
+        <ol>
+          <li><b>Host.</b> Press Host a game. You get a 6-character code. Send the code, or Copy link. You are player 1. Leave this tab open and in front — it is the console.</li>
+          <li><b>Join.</b> Your friend unlocks the same site, presses Join, and types the code. They see your screen and use their own controller.</li>
+          <li><b>Turns.</b> Gemfire is turn-based, so a short delay on a friend's screen is fine. Their buttons come back here as controller ports 2–4. Up to three friends can join.</li>
+        </ol>
+      </div>
+      <div class="cols">
+        <section>
+          <h2>Play on this tab</h2>
+          <button id="soloBtn" type="button">Play solo</button>
+          <button id="hostBtn" type="button">Host a game</button>
+          <p class="fine">Save states and fullscreen are on the emulator bar. Saves stay in this browser.</p>
+        </section>
+        <section>
+          <h2>Join a friend</h2>
+          <label for="codeInput">Friend code</label>
+          <input id="codeInput" maxlength="80" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="ABC123">
+          <label for="nameInput">Your name</label>
+          <input id="nameInput" maxlength="16" autocomplete="nickname" placeholder="Optional">
+          <button id="joinBtn" type="button">Join</button>
+        </section>
+      </div>
+      <p id="lobbyMsg" role="status"></p>
+    </div>
+  </div>
+
+  <div id="play" class="hidden">
+    <header>
+      <span class="brand">GEMFIRE</span>
+      <span id="roomBox" class="hidden"><b id="roomCode"></b> <button id="copyBtn" type="button">Copy link</button></span>
+      <span id="who" class="hidden"></span>
+      <label id="adapterLabel">Multitap
+        <select id="adapter">
+          <option value="way">EA 4-Way Play</option>
+          <option value="team">Sega Team Player</option>
+        </select>
+      </label>
+      <button id="hostLateBtn" type="button">Host</button>
+      <button id="fsBtn" type="button">Fullscreen</button>
+      <button id="helpBtn" type="button">How to play</button>
+      <button id="backBtn" type="button" class="secondary">Leave</button>
+    </header>
+    <p id="statusLine" role="status"></p>
+    <div id="screen">
+      <div id="emu"></div>
+      <video id="remote" class="hidden" autoplay playsinline></video>
+      <button id="tapSound" class="hidden" type="button">Tap for sound</button>
+    </div>
+    <div id="pad" class="hidden">
+      <div class="dpad">
+        <button type="button" data-bit="0" aria-label="Up">▲</button>
+        <button type="button" data-bit="2" aria-label="Left">◀</button>
+        <button type="button" data-bit="3" aria-label="Right">▶</button>
+        <button type="button" data-bit="1" aria-label="Down">▼</button>
+      </div>
+      <div class="face">
+        <button type="button" data-bit="4">A</button>
+        <button type="button" data-bit="5">B</button>
+        <button type="button" data-bit="6">C</button>
+        <button type="button" data-bit="7">Start</button>
+      </div>
+      <p class="fine">Arrows or WASD move. Z A, X B, C C, Enter or Space is Start. A gamepad works too.</p>
+    </div>
+  </div>
+</div>
+
+<dialog id="help">
+  <h2>How to play</h2>
+  <p><b>Host.</b> You are player 1. Arrows move. Z is A, X is B, C is C, Enter is Start. A gamepad works. The emulator bar has save states and fullscreen. Keep the tab open and visible.</p>
+  <p><b>Join.</b> You watch the host's screen. Same keys, and WASD also moves. The buttons under the picture work on a phone. You are player 2, 3 or 4, on your own controller port.</p>
+  <p><b>Multitap.</b> Three and four players need an adapter. This page starts with the EA 4-Way Play, which maps players 1–4 to ports 1–4. If Gemfire never offers a 4-player game, switch the menu to Sega Team Player. That restarts the ROM, because the game checks the adapter at power-on.</p>
+  <p><b>Limits.</b> The host's browser is the game. Friends get the picture and sound from that tab, so there is a little delay, and the game cannot drift out of sync. A computer is the best host. Some strict networks block the connection. Matchmaking uses the public PeerJS service, with a public relay as a fallback.</p>
+  <button id="helpClose" type="button">Close</button>
+</dialog>
+<script src="js/vendor/peerjs.min.js"></script>
+<script type="module" src="js/app.js"></script>
+</body>
+</html>

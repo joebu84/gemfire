@@ -1,0 +1,66 @@
+* { box-sizing: border-box; }
+html, body { margin: 0; min-height: 100%; background: #140e09; color: #f6efe2; font-family: ui-sans-serif, "Segoe UI", Helvetica, Arial, sans-serif; }
+body.playing { height: 100dvh; overflow: hidden; }
+button, input, select { font: inherit; color: inherit; }
+button { background: #e2b340; color: #1a1208; border: 3px solid #1a1208; border-radius: 8px; padding: 10px 14px; font-weight: 700; cursor: pointer; }
+button.secondary { background: #3a2a22; color: #f6efe2; }
+button:disabled { opacity: 0.55; cursor: default; }
+button:focus-visible, input:focus-visible, select:focus-visible { outline: 2px solid #f0d78c; outline-offset: 2px; }
+input, select { background: #1c140f; border: 2px solid #1a1208; border-radius: 8px; padding: 10px; width: 100%; }
+label { display: block; margin: 10px 0 4px; font-size: 14px; }
+.hidden, [hidden] { display: none !important; }
+h1 { font-family: Georgia, "Iowan Old Style", Palatino, serif; font-size: 48px; letter-spacing: 0.14em; margin: 0; text-shadow: 3px 3px #000; }
+h2 { font-size: 16px; margin: 0 0 8px; color: #f0d78c; }
+.sub { color: #e7d7b8; margin: 6px 0 14px; }
+.fine { font-size: 13px; color: #cbbba4; line-height: 1.45; }
+.card { width: min(440px, calc(100% - 24px)); margin: 8vh auto 32px; background: #2a1c14; border: 3px solid #0c0806; border-radius: 12px; padding: 22px; box-shadow: 0 12px 40px #000a; }
+@media (max-height: 820px) { .card { margin: 16px auto 24px; } }
+.card.wide { width: min(760px, calc(100% - 24px)); }
+#gate { min-height: 100dvh; background: radial-gradient(circle at 50% 20%, #5a3824, #140e09 70%); }
+#gateMsg, #lobbyMsg, #statusLine { min-height: 1.2em; }
+#gateMsg { color: #ffb4b4; }
+#lobbyMsg { color: #f0d78c; }
+#lobbyMsg:empty, #gateMsg:empty { min-height: 0; }
+.check { display: flex; align-items: center; gap: 8px; font-size: 14px; }
+.check input { width: auto; }
+#unlockBtn, #soloBtn, #hostBtn, #joinBtn { margin-top: 12px; }
+#hostBtn { margin-left: 8px; }
+.howto { background: #1c140f; border-radius: 8px; padding: 10px 12px; margin-bottom: 14px; }
+.howto ol { margin: 0; padding-left: 1.2em; }
+.howto li { margin: 6px 0; line-height: 1.4; }
+.cols { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+@media (max-width: 700px) {
+  .cols { grid-template-columns: 1fr; }
+  h1 { font-size: 36px; letter-spacing: 0.08em; }
+  #hostBtn { margin-left: 0; }
+}
+
+#play { height: 100dvh; display: flex; flex-direction: column; background: #0c0806; }
+header { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; padding: 8px 10px; background: #1c140f; border-bottom: 3px solid #0c0806; }
+.brand { font-family: Georgia, Palatino, serif; letter-spacing: 0.16em; font-weight: 700; }
+#roomCode { font-size: 22px; letter-spacing: 0.24em; color: #f0d78c; }
+#who { font-size: 13px; color: #e7d7b8; }
+#adapterLabel { display: flex; align-items: center; gap: 6px; margin: 0; font-size: 13px; }
+#adapterLabel select { width: auto; padding: 6px; }
+#statusLine { margin: 0; padding: 4px 10px; font-size: 14px; color: #f0d78c; background: #140e09; }
+#screen { position: relative; flex: 1; min-height: 0; background: #000; }
+#emu, #remote { position: absolute; inset: 0; width: 100%; height: 100%; }
+#remote { object-fit: contain; background: #000; image-rendering: pixelated; }
+#tapSound { position: absolute; left: 50%; bottom: 16px; transform: translateX(-50%); z-index: 3; }
+
+#pad { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 16px; padding: 8px 10px calc(8px + env(safe-area-inset-bottom)); background: #1c140f; }
+#pad .fine { flex-basis: 100%; text-align: center; margin: 0; }
+.dpad { display: grid; grid-template-columns: 54px 54px 54px; grid-template-rows: 54px 54px 54px; gap: 4px; }
+.dpad [data-bit="0"] { grid-column: 2; grid-row: 1; }
+.dpad [data-bit="2"] { grid-column: 1; grid-row: 2; }
+.dpad [data-bit="3"] { grid-column: 3; grid-row: 2; }
+.dpad [data-bit="1"] { grid-column: 2; grid-row: 3; }
+#pad button { width: 54px; height: 54px; padding: 0; font-size: 18px; touch-action: none; user-select: none; background: #3a2a22; color: #f6efe2; }
+#pad button.on, #pad button:active { background: #e2b340; color: #1a1208; }
+.face { display: flex; gap: 8px; }
+#pad .face [data-bit="7"] { width: auto; padding: 0 12px; }
+
+dialog { border: 3px solid #0c0806; border-radius: 12px; background: #2a1c14; color: #f6efe2; width: min(520px, calc(100% - 24px)); }
+dialog::backdrop { background: #000a; }
+dialog p { line-height: 1.45; }
+dialog button { margin-top: 8px; }
